@@ -1,0 +1,25 @@
+/** ==================== Header(NavBar) page Css ======================*/
+.navbar{
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 25px;
+    text-transform: uppercase;
+    box-shadow: 0 8px 6px -6px lightslategrey;
+    --webkit-box-shadow: 0 8px 6px -6px lightslategrey;
+    border-bottom: 0.3px solid lightslategrey;
+}
+.nav-link{
+    font-weight: 400!important;
+}
+
+.active{
+    border-bottom: 2px solid deeppink;
+}
+.nav-item{
+    padding-right: 30px!important;
+}
+.navbar-brand{
+    font-weight: 800;
+    font-family: 'roboto','sans-serif';
+    letter-spacing: 3px;
+}
