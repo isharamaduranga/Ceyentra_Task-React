@@ -6,3 +6,30 @@
   padding: 0;
   box-sizing: border-box;
 }
+/** ==================== Not Found page Css ======================*/
+.pnf-btn{
+  color: #ff0101;
+  border: 2px solid #ff0101;
+  border-radius: 25px;
+  text-decoration: none;
+  padding: 8px;
+
+}
+.pnf-btn:hover{
+  color: lime;
+  border: 2px solid lime;
+}
+
+/** ==================== Form Css ======================*/
+
+.badge{
+  margin: 5px;
+}
+
+a:link    { color: #ffffff; }
+a:visited { color: #ffffff; }
+
+a:hover {
+  color:  #ffffff;
+  background: #3263cc !important;
+}
