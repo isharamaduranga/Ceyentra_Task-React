@@ -1,7 +1,7 @@
 import React from 'react';
 
-import privacyImg from "../assets/network.png";
-import Layout from "../Layout/Layout";
+import privacyImg from "../../assets/network.png";
+import Layout from "../../Layout/Layout";
 
 const Policy = () => {
     return (

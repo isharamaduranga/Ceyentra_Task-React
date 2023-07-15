@@ -1,7 +1,7 @@
 import React from 'react';
 
-import aboutImg from '../assets/cus_a.png'
-import Layout from "../Layout/Layout";
+import aboutImg from '../../assets/cus_a.png'
+import Layout from "../../Layout/Layout";
 
 const About = () => {
     return (

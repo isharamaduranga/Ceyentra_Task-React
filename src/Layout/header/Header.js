@@ -75,7 +75,7 @@ const Header = () => {
                                             ADMIN
                                         </NavLink>
 
-                                        <ul className="dropdown-menu bg-dark">
+                                        <ul className="dropdown-menu">
                                             <li>
                                                 <NavLink
                                                     to="/home/admin"

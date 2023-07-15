@@ -7,10 +7,14 @@ import { ToastContainer } from 'react-toastify';
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home/Home";
 import PrivateRoute from "./Routes/ProtectedRoute";
-import AdminDashboard from "./pages/Admin/AdminDashboard";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Policy from "./pages/Policy";
+import AdminDashboard from "./pages/Admin/Dashboard/AdminDashboard";
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
+import Policy from "./pages/Policy/Policy";
+import Category from "./pages/Admin/Category/Category";
+import CreateProduct from "./pages/Admin/Product/CreateProducts";
+import Products from "./pages/Admin/Product/Products";
+import Users from "./pages/Admin/Users/Users";
 
 function App() {
     return (
@@ -22,6 +26,10 @@ function App() {
                 <Route path="/home" element={<PrivateRoute/>} >
                     <Route path="" element={<Home/>} />
                     <Route path="admin" element={<AdminDashboard/>} />
+                    <Route path="admin/get-category" element={<Category/>} />
+                    <Route path="admin/create-product" element={<CreateProduct/>} />
+                    <Route path="admin/products" element={<Products/>} />
+                    <Route path="admin/users" element={<Users/>} />
                 </Route>
                 <Route path="/about" element={<About/>}/>
                 <Route path="/contact" element={<Contact/>}/>
