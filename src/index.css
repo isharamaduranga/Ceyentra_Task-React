@@ -29,7 +29,7 @@
 a:link    { color: #ffffff; }
 a:visited { color: #ffffff; }
 
-a:hover {
+Link:hover {
   color:  #ffffff;
   background: #3263cc !important;
 }

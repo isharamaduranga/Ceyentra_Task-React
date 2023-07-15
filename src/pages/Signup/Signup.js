@@ -5,7 +5,7 @@ import {Box} from "@mui/material";
 import {BiUserPin} from "react-icons/bi";
 import Input from "../../components/UI/Input/input";
 import {Link, useNavigate} from "react-router-dom";
-import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {createUserWithEmailAndPassword,updateProfile} from 'firebase/auth';
 import {auth} from "../../config/firebase";
 import {toast} from 'react-toastify';
 
@@ -41,6 +41,11 @@ function Signup(props) {
             console.log(res);
             toast.success(`${values.name} Sign-Up Successfully ...`)
             setSubmitButtonDisabled(false);
+
+            const user = res.user;
+            updateProfile(user,{
+
+            })
             resetForm({values:''})
             navigate("/login");
 
@@ -142,7 +147,7 @@ function Signup(props) {
                 </button>
             </div>
             <p className='pt-3 m-0 text-center'>Already Have an Account ?</p>
-            <div className='text-center'><Link to='/login' className='badge bg-info'>Login</Link></div>
+            <div className='text-center'><Link to='/' className='badge bg-info'>Login</Link></div>
         </Box>
     </div>);
 }

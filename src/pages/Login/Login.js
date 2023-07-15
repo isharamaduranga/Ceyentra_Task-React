@@ -1,85 +1,108 @@
-import React, {useState} from 'react';
-import {Box} from "@mui/material";
-import {useFormik} from "formik";
-import './Login.css'
-import Input from "../../components/UI/Input/input";
+import React, { useContext } from 'react';
+import { Box } from '@mui/material';
+import { useFormik } from 'formik';
+import './Login.css';
+import Input from '../../components/UI/Input/input';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaRegUser } from 'react-icons/fa';
+import { manualLoginUser } from '../../services/auth';
+import { toast } from 'react-toastify';
+import {useAuth} from "../../context/AuthContext";
 
-import {Link} from "react-router-dom";
-import {FaRegUser} from "react-icons/fa";
+function Login() {
+    const[auth,setAuth]=useAuth();
 
-function Login(props) {
+
+    const navigate = useNavigate();
+
 
     const initialValues = {
-        email: "", password: ""
-    }
-    const validate = (values) => {
-        let errors = {}
+        username: '',
+        password: '',
+    };
 
-        if (!values.email) {
-            errors.email = "E-Mail Can Not be Blank";
+    const validate = (values) => {
+        let errors = {};
+
+        if (!values.username) {
+            errors.username = 'User Name Can Not be Blank';
         }
         if (!values.password) {
-            errors.password = "Password is empty , Check Again!!"
+            errors.password = 'Password is empty, Check Again!!';
         }
         return errors;
-    }
+    };
 
-    const onSubmit = (values, {resetForm}) => {
+    const onSubmit = async (values, { resetForm }) => {
+        try {
+            const response = await manualLoginUser({
+                username: values.username,
+                password: values.password,
+            });
+            // Assuming the response includes a token
+            const token = response.token;
 
-        /*      const taskId = new Date();
+            // Check if the token exists
+            if (token) {
 
-              const apiURL = `https://task-list-5a410-default-rtdb.firebaseio.com/tasks/${taskId}.json`;
+                localStorage.setItem('token', token);
+                setAuth({token:token})
 
-              const task = {
-                  ...values,
-                  status: 'New',
-                  id: taskId,
-              }
-              axios.put(apiURL, task).then((res) => {
-                  if (res.status === 200) {
-                      setMsg('Task Saved Successfully ...');
-                      resetForm({values:''})
-                  }
-              }).catch((err) => {
-                  setMsg('Something Went wrong Not Saved !!!')
-              })*/
-    }
+                // Call the onLogin function passed from the AuthProvider
 
+                // Redirect to the Home page
+                navigate('/home');
+                toast.success('Log In Successfully ...');
+            } else {
+                // Handle authentication error
+                toast.error('Authentication failed !!!');
+            }
+            // Reset the form if needed
+            resetForm({ values: '' });
+        } catch (error) {
+            // Handle errors here
+            resetForm({ values: '' });
+            toast.error('Authentication failed !!!');
+        }
+    };
 
     const formik = useFormik({
-        initialValues, onSubmit, validate,
+        initialValues,
+        onSubmit,
+        validate,
     });
 
-
-    return (<div className="d-flex  align-items-center justify-content-center  " style={{height: '84vh'}}>
-
+    return (
+        <div className="d-flex align-items-center justify-content-center" style={{ height: '84vh' }}>
             <Box
                 className="shadow-lg rounded-4 p-4"
                 component="form"
                 sx={{
-                    '& .MuiTextField-root': {m: 1, width: '20vw', height: '8vh'},
+                    '& .MuiTextField-root': { m: 1, width: '20vw', height: '8vh' },
                 }}
                 noValidate
                 autoComplete="off"
                 onSubmit={formik.handleSubmit}
             >
-
-                <div className='text-center mb-2'>
-                    <FaRegUser className="pb-1 text-primary text-center" size="50px"/>
+                <div className="text-center mb-2">
+                    <FaRegUser className="pb-1 text-primary text-center" size="50px" />
                 </div>
                 <h3 className="text-center">Login Form</h3>
-                <br/>
+                <br />
 
                 <Input
-                    label="E-Mail"
+                    label="User Name"
                     id="outlined-size-small"
-                    name="email"
-                    value={formik.values.email}
+                    name="username"
+                    value={formik.values.username}
                     size="small"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    helperText={formik.errors.email && formik.touched.email ?
-                        <span className="small text-danger">{formik.errors.email}</span> : null}
+                    helperText={
+                        formik.errors.username && formik.touched.username ? (
+                            <span className="small text-danger">{formik.errors.username}</span>
+                        ) : null
+                    }
                 />
 
                 <Input
@@ -90,23 +113,23 @@ function Login(props) {
                     size="small"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    helperText={formik.errors.password && formik.touched.password ?
-                        <span className="small text-danger">{formik.errors.password}</span> : null}
-                    type='password'
+                    helperText={
+                        formik.errors.password && formik.touched.password ? (
+                            <span className="small text-danger">{formik.errors.password}</span>
+                        ) : null
+                    }
+                    type="password"
                     autoComplete="current-password"
                 />
 
                 <div className="d-flex flex-wrap align-items-center justify-content-center">
-                    <button type="submit"
-                            className="btn mt-1 btn-success align-items-center">
+                    <button type="submit" className="btn mt-1 btn-success align-items-center">
                         Submit
                     </button>
                 </div>
-                <p className='pt-3 m-0 text-center'>Already Have an Account ?</p>
-                <div className='text-center'><Link to='/signup' className='badge bg-info'>SignUp</Link></div>
-
             </Box>
-        </div>);
+        </div>
+    );
 }
 
 export default Login;

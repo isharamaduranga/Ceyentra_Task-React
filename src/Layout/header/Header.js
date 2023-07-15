@@ -2,9 +2,20 @@ import React from 'react';
 import './Header.css'
 import {Link, NavLink} from "react-router-dom";
 import {HiShoppingBag} from "react-icons/hi";
+import {useAuth} from "../../context/AuthContext";
+import {toast} from "react-toastify";
+
 const Header = () => {
-    return (
-        <>
+    const [auth, setAuth] = useAuth();
+    const handleLogOut = () => {
+        setAuth({
+            ...auth,
+            token:''
+        })
+        localStorage.removeItem('token');
+        toast.success("Log Out Successfully ...")
+    };
+    return (<>
             <nav className="navbar bg-dark navbar-expand-lg navbar-dark">
                 <div className="container-fluid">
 
@@ -21,26 +32,56 @@ const Header = () => {
                         >
                             <HiShoppingBag className="pb-1 text-warning" size="35px"/> App-Test
                         </Link>
-                            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                            {!auth.token ? (
+
+                                <>
                                 <li className="nav-item">
                                     <NavLink
-                                        to="/login"
+                                        to="/"
                                         className="nav-link "
                                         aria-current="page"
                                     >
                                         LOGIN
                                     </NavLink>
                                 </li>
+
                                 <li className="nav-item">
                                     <NavLink
                                         to="/signup"
                                         className="nav-link "
                                         aria-current="page"
                                     >
-                                        SIGN UP
+                                        SIGN-UP
                                     </NavLink>
                                 </li>
-                            </ul>
+                            </>) :
+                                (<>
+                                    <li className="nav-item">
+                                        <NavLink
+                                            to="/home"
+                                            className="nav-link "
+                                            aria-current="page"
+                                        >
+                                            HOME
+                                        </NavLink>
+                                    </li>
+
+                                <li className="nav-item">
+                                    <NavLink
+                                        onClick={handleLogOut}
+                                        to="/"
+                                        className="nav-link "
+                                        aria-current="page"
+                                    >
+                                        LOG-OUT
+                                    </NavLink>
+                                </li>
+
+                            </>)
+
+                            }
+                        </ul>
                     </div>
                 </div>
             </nav>

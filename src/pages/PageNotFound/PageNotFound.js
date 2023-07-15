@@ -7,7 +7,7 @@ const PageNotFound = () => {
             <img className="not_found_image pt-5 w-25 " src={notFoundImg} alt='not_found_image' />
             <h3 className="pb-5">Oops ! Page Not Found !!!</h3>
 
-            <Link to="/login" className="pnf-btn">Go Back Home</Link>
+            <Link to="/" className="pnf-btn text-dark">Go Back Home</Link>
         </div>
     );
 };
