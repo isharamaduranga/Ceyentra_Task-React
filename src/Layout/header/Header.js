@@ -1,10 +1,11 @@
 import React from 'react';
 import './Header.css'
 import {Link, NavLink} from "react-router-dom";
-import {HiShoppingBag} from "react-icons/hi";
+
 import {useAuth} from "../../context/AuthContext";
 import {toast} from "react-toastify";
 import { Badge } from 'antd';
+import {MdShoppingCart} from "react-icons/md";
 
 const Header = () => {
     const [auth, setAuth] = useAuth();
@@ -31,7 +32,7 @@ const Header = () => {
                             to="/"
                             className="navbar-brand text-warning"
                         >
-                            <HiShoppingBag className="pb-1 text-warning" size="35px"/> App-Test
+                            <MdShoppingCart className="pb-1 pe-2 text-success" size="35px"/>  E-Commerce
                         </Link>
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             {!auth.token ? (

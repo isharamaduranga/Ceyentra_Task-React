@@ -14,16 +14,14 @@ const Contact = () => {
 
                 <div className="row">
                     <div className="col-md-7 mb-md-0  form_bg bg-white shadow border border-info rounded-5">
-                        <form id="contact-form" name="contact-form">
+                        <form id="contact-form" name="contact-form" className='p-5'>
 
-
-                            <div className="row">
-
+                            <div className="row pb-2">
 
                                 <div className="col-md-6">
                                     <div className="md-form mb-0">
+                                        <label htmlFor="name" className="">Your name</label>
                                         <input type="text" id="name" name="name" className="form-control"/>
-                                            <label htmlFor="name" className="">Your name</label>
                                     </div>
                                 </div>
 
@@ -31,8 +29,8 @@ const Contact = () => {
 
                                 <div className="col-md-6">
                                     <div className="md-form mb-0">
+                                        <label htmlFor="email" className="">Your email</label>
                                         <input type="text" id="email" name="email" className="form-control"/>
-                                            <label htmlFor="email" className="">Your email</label>
                                     </div>
                                 </div>
 
@@ -41,39 +39,39 @@ const Contact = () => {
 
 
 
-                            <div className="row">
+                            <div className="row pb-2">
                                 <div className="col-md-12">
                                     <div className="md-form mb-0">
+                                        <label htmlFor="subject" className="">Subject</label>
                                         <input type="text" id="subject" name="subject" className="form-control"/>
-                                            <label htmlFor="subject" className="">Subject</label>
                                     </div>
                                 </div>
                             </div>
 
 
 
-                            <div className="row">
+                            <div className="row pb-4">
 
                                 <div className="col-md-12">
 
                                     <div className="md-form">
-                                        <textarea type="text" id="message" name="message" rows="2" className="form-control md-textarea"></textarea>
                                         <label htmlFor="message">Your message</label>
+                                        <textarea type="text" id="message" name="message" rows="2" className="form-control md-textarea"></textarea>
                                     </div>
 
                                 </div>
                             </div>
-
+                            <div className="text-center text-md-left">
+                                <a className="btn btn-primary w-25" >Send</a>
+                            </div>
+                            <div className="status"></div>
 
                         </form>
 
-                        <div className="text-center text-md-left">
-                            <a className="btn btn-primary" >Send</a>
-                        </div>
-                        <div className="status"></div>
+
                     </div>
 
-                    <div className="col-md-5 text-center details_bg">
+                    <div className="col-md-5 text-center details_bg pt-5">
                         <ul className="list-unstyled mb-0">
                             <li><i className="fas fa-map-marker-alt fa-2x text-danger"></i>
                                 <p>San Francisco, CA 94126, USA</p>
