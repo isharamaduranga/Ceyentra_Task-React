@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import './Signup.css'
 import {useFormik} from "formik";
+import {Link, useNavigate} from "react-router-dom";
+import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
+import {auth} from "../../config/firebase";
+import {toast} from 'react-toastify';
+import Layout from "../../Layout/Layout";
 import {Box} from "@mui/material";
 import {BiUserPin} from "react-icons/bi";
 import Input from "../../components/UI/Input/input";
-import {Link, useNavigate} from "react-router-dom";
-import {createUserWithEmailAndPassword,updateProfile} from 'firebase/auth';
-import {auth} from "../../config/firebase";
-import {toast} from 'react-toastify';
 
 
 function Signup(props) {
@@ -43,10 +44,8 @@ function Signup(props) {
             setSubmitButtonDisabled(false);
 
             const user = res.user;
-            updateProfile(user,{
-
-            })
-            resetForm({values:''})
+            updateProfile(user, {})
+            resetForm({values: ''})
             navigate("/login");
 
         }).catch((err) => {
@@ -80,79 +79,82 @@ function Signup(props) {
     });
 
 
-    return (<div className="d-flex  align-items-center justify-content-center  " style={{height: '86vh'}}>
-
-        <Box
-            className="shadow-lg rounded-4 p-4"
-            component="form"
-            sx={{
-                '& .MuiTextField-root': {m: 1, width: '20vw', height: '7vh'},
-            }}
-            noValidate
-            autoComplete="off"
-            onSubmit={formik.handleSubmit}
-        >
-
-            <div className='text-center'>
-                <BiUserPin className="pb-1 text-primary text-center" size="55px"/>
-            </div>
-            <h3 className="text-center">SignUp Form</h3>
-            <br/>
-
-            <Input
-                label="Name"
-                id="outlined-size-small"
-                name="name"
-                value={formik.values.name}
-                size="small"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                helperText={formik.errors.name && formik.touched.name ?
-                    <span className="small text-danger">{formik.errors.name}</span> : null}
-            />
-
-            <Input
-                label="E-Mail"
-                id="outlined-size-small"
-                name="email"
-                value={formik.values.email}
-                size="small"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                helperText={formik.errors.email && formik.touched.email ?
-                    <span className="small text-danger">{formik.errors.email}</span> : null}
-            />
-
-            <Input
-                label="Password"
-                id="outlined-password-input"
-                name="password"
-                value={formik.values.password}
-                size="small"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                helperText={formik.errors.password && formik.touched.password ?
-                    <span className="small text-danger">{formik.errors.password}</span> : null}
-                type='password'
-                autoComplete="current-password"
-            />
-
-            <div className="d-flex flex-wrap p-2 align-items-center justify-content-center">
-                <button
-                    type="submit"
-                    className="btn mt-1 btn-success w-100 "
-                    disabled={submitButtonDisabled}
+    return (
+        <Layout title={"SignUp Page - Ecommerce"}>
+            <div className="d-flex  align-items-center justify-content-center pt-4  " style={{height: '79vh'}}>
+                <Box
+                    className="shadow-lg rounded-5 p-4"
+                    component="form"
+                    sx={{
+                        '& .MuiTextField-root': {m: 1, width: '20vw', height: '7vh'},
+                    }}
+                    noValidate
+                    autoComplete="off"
+                    onSubmit={formik.handleSubmit}
                 >
-                    SIGN UP
-                </button>
-            </div>
-            <hr  className='text-bg-secondary'/>
-            <p className=' m-0 text-center'>Already Have an Account ?</p>
-            <div className="d-flex flex-wrap ps-2 pe-2 mt-1 mb-1 align-items-center justify-content-center">
-                <Link to="/" className="btn btn-info align-items-center w-100">LOG IN</Link>
-            </div>
-        </Box>
-    </div>);
+
+                    <div className='text-center'>
+                        <BiUserPin className="pb-1 text-primary text-center" size="55px"/>
+                    </div>
+                    <h3 className="text-center">SignUp Form</h3>
+                    <br/>
+
+                    <Input
+                        label="Name"
+                        id="outlined-size-small"
+                        name="name"
+                        value={formik.values.name}
+                        size="small"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        helperText={formik.errors.name && formik.touched.name ?
+                            <span className="small text-danger">{formik.errors.name}</span> : null}
+                    />
+
+                    <Input
+                        label="E-Mail"
+                        id="outlined-size-small"
+                        name="email"
+                        value={formik.values.email}
+                        size="small"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        helperText={formik.errors.email && formik.touched.email ?
+                            <span className="small text-danger">{formik.errors.email}</span> : null}
+                    />
+
+                    <Input
+                        label="Password"
+                        id="outlined-password-input"
+                        name="password"
+                        value={formik.values.password}
+                        size="small"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        helperText={formik.errors.password && formik.touched.password ?
+                            <span className="small text-danger">{formik.errors.password}</span> : null}
+                        type='password'
+                        autoComplete="current-password"
+                    />
+
+                    <div className="d-flex flex-wrap p-2 align-items-center justify-content-center">
+                        <button
+                            type="submit"
+                            className="btn mt-1 btn-success w-100 "
+                            disabled={submitButtonDisabled}
+                        >
+                            SIGN UP
+                        </button>
+                    </div>
+                    <hr  className='text-bg-secondary'/>
+                    <p className=' m-0 text-center'>Already Have an Account ?</p>
+                    <div className="d-flex flex-wrap ps-2 pe-2 mt-1 mb-1 align-items-center justify-content-center">
+                        <Link to="/" className="btn btn-info align-items-center w-100">LOG IN</Link>
+                    </div>
+                </Box>
+            </div>);
+        </Layout>
+    )
 }
 
 export default Signup;

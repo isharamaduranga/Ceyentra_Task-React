@@ -47,6 +47,7 @@
     ]
   },
   "devDependencies": {
-    "antd": "^5.7.0"
+    "antd": "^5.7.0",
+    "react-helmet": "^6.1.0"
   }
 }
