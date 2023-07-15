@@ -80,13 +80,13 @@ function Signup(props) {
     });
 
 
-    return (<div className="d-flex  align-items-center justify-content-center  " style={{height: '84vh'}}>
+    return (<div className="d-flex  align-items-center justify-content-center  " style={{height: '86vh'}}>
 
         <Box
             className="shadow-lg rounded-4 p-4"
             component="form"
             sx={{
-                '& .MuiTextField-root': {m: 1, width: '20vw', height: '9vh'},
+                '& .MuiTextField-root': {m: 1, width: '20vw', height: '7vh'},
             }}
             noValidate
             autoComplete="off"
@@ -137,17 +137,20 @@ function Signup(props) {
                 autoComplete="current-password"
             />
 
-            <div className="d-flex flex-wrap align-items-center justify-content-center">
+            <div className="d-flex flex-wrap p-2 align-items-center justify-content-center">
                 <button
                     type="submit"
-                    className="btn mt-1 btn-success align-items-center"
+                    className="btn mt-1 btn-success w-100 "
                     disabled={submitButtonDisabled}
                 >
-                    Submit
+                    SIGN UP
                 </button>
             </div>
-            <p className='pt-3 m-0 text-center'>Already Have an Account ?</p>
-            <div className='text-center'><Link to='/' className='badge bg-info'>Login</Link></div>
+            <hr  className='text-bg-secondary'/>
+            <p className=' m-0 text-center'>Already Have an Account ?</p>
+            <div className="d-flex flex-wrap ps-2 pe-2 mt-1 mb-1 align-items-center justify-content-center">
+                <Link to="/" className="btn btn-info align-items-center w-100">LOG IN</Link>
+            </div>
         </Box>
     </div>);
 }

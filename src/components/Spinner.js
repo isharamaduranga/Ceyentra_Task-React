@@ -20,7 +20,7 @@ const Spinner = ({path = "/login"}) => {
     return (
         <>
             <div className="d-flex flex-column justify-content-center align-items-center"
-                 style={{height: '100vh'}}
+                 style={{height: '87vh'}}
             >
                 <h1 className='text-center'> Redirecting to you in  <span className='text-danger'>{count}</span> second</h1>
                 <div className="spinner-border" role="status">

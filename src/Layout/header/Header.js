@@ -4,6 +4,7 @@ import {Link, NavLink} from "react-router-dom";
 import {HiShoppingBag} from "react-icons/hi";
 import {useAuth} from "../../context/AuthContext";
 import {toast} from "react-toastify";
+import { Badge } from 'antd';
 
 const Header = () => {
     const [auth, setAuth] = useAuth();
@@ -57,7 +58,7 @@ const Header = () => {
                                 </li>
                             </>) :
                                 (<>
-                                    <li className="nav-item">
+                                    <li className="nav-item inactive">
                                         <NavLink
                                             to="/home"
                                             className="nav-link "
@@ -67,16 +68,45 @@ const Header = () => {
                                         </NavLink>
                                     </li>
 
-                                <li className="nav-item">
-                                    <NavLink
-                                        onClick={handleLogOut}
-                                        to="/"
-                                        className="nav-link "
-                                        aria-current="page"
-                                    >
-                                        LOG-OUT
-                                    </NavLink>
-                                </li>
+                                    <li className="nav-item dropdown ">
+                                        <NavLink className="nav-link dropdown-toggle  " role="button"
+                                                 data-bs-toggle="dropdown" aria-expanded="false">
+                                            ADMIN
+                                        </NavLink>
+
+                                        <ul className="dropdown-menu bg-dark">
+                                            <li>
+                                                <NavLink
+                                                    to="/home/admin"
+                                                    className="dropdown-item"
+                                                >DashBoard
+                                                </NavLink>
+                                            </li>
+
+                                            <li className="nav-item">
+                                                <NavLink
+                                                    onClick={handleLogOut}
+                                                    to="/"
+                                                    className="nav-link "
+                                                    aria-current="page"
+                                                >
+                                                    LOG-OUT
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+
+                                    <li className="nav-item mt-2">
+                                        <Badge count={5} overflowCount={10}>
+                                            <NavLink
+                                                to="/home/cart"
+                                                className="nav-link"
+                                                href="#">
+                                                CART
+                                            </NavLink>
+                                        </Badge>
+                                    </li>
 
                             </>)
 

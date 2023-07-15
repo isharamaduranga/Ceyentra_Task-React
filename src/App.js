@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home/Home";
 import PrivateRoute from "./Routes/ProtectedRoute";
-import Category from "./pages/Category/Category";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 
 function App() {
     return (
@@ -20,7 +20,7 @@ function App() {
                 <Route path="/signup" element={<Signup/>} />
                 <Route path="/home" element={<PrivateRoute/>} >
                     <Route path="" element={<Home/>} />
-                    <Route path="category" element={<Category/>} />
+                    <Route path="admin" element={<AdminDashboard/>} />
                 </Route>
                 <Route path="*" element={<PageNotFound />} />
             </Routes>

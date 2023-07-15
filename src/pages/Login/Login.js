@@ -122,10 +122,15 @@ function Login() {
                     autoComplete="current-password"
                 />
 
-                <div className="d-flex flex-wrap align-items-center justify-content-center">
-                    <button type="submit" className="btn mt-1 btn-success align-items-center">
-                        Submit
+                <div className="d-flex flex-wrap p-2  align-items-center justify-content-center">
+                    <button type="submit" className="btn mt-1 btn-success align-items-center w-100">
+                        LOG IN
                     </button>
+                </div>
+                <hr className='text-bg-secondary'/>
+                <p className=' m-0 text-center'>Dont Have an Account ?</p>
+                <div className="d-flex flex-wrap ps-2 pe-2 mt-1 align-items-center justify-content-center">
+                    <Link to="/signup" className="btn btn-info align-items-center w-100">SIGN UP</Link>
                 </div>
             </Box>
         </div>
