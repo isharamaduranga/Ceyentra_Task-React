@@ -16,8 +16,8 @@ const Category = () => {
 
     const fetchCategories = async () => {
         try {
-            const response = await getCategories();
-            setCategories(response);
+            const data = await getCategories();
+            setCategories(data);
         } catch (error) {
             console.error('Error fetching categories:', error);
         }
@@ -43,13 +43,17 @@ const Category = () => {
 
                     <div className="col-md-9" style={{ borderLeft: '1px solid gray' }}>
                         <h2 className={'text-center'}>All Categories page</h2>
-
+                        <hr/>
                         <div className="d-flex flex-row justify-content-evenly flex-wrap">
                         {categories.map(category => (
                             <div key={category} className=" mt-3 mb-3 gx-3 gy-3 ">
                                 <Link onClick={() => handleCategoryClick(category)}>
                                     <div className="card border border-info shadow " style={{width: '15rem',height:'15rem'}}>
-                                        <img src={categoryBg} className="card-img-top" alt={category} style={{margin:"auto", width:'150px'}}/>
+                                        <img src={categoryBg}
+                                             className="card-img-top"
+                                             alt={category}
+                                             style={{margin:"auto", width:'150px'}}
+                                        />
                                         <hr className={'m-2'}/>
                                         <div className="card-body">
                                             <h6 className={'text-center text-uppercase'}>{category}</h6>
@@ -63,15 +67,24 @@ const Category = () => {
                         <hr/>
                         {selectedCategory && (
                             <>
-                                <h2>{selectedCategory} Category</h2>
-                                {/* Render the category data here */}
-                                {categoryData.map(item => (
-                                    <div key={item.id}>
-                                        <h4>{item.title}</h4>
-                                        <p>{item.description}</p>
-                                        <img src={item.image} alt={item.category} />
-                                    </div>
-                                ))}
+                                <h2 className={'text-center'}>{selectedCategory} Category</h2>
+
+                                <div className="d-flex flex-wrap justify-content-center gap-4">
+                                    {categoryData.map(item => (
+                                        <div key={item.id} className="card m-2 border border-1 shadow border-warning" style={{ width: '20rem', height: '28rem' }}>
+                                            <img src={item.image}
+                                                 className="card-img-top img-thumbnail object-fit-cover img-fluid"
+                                                 alt={item.id}
+                                                 style={{ height: '15rem' }}
+                                            />
+                                            <div className="card-body">
+                                                <h5 className="card-title">{item.title.substring(0, 20)}</h5>
+                                                <p className="card-text">{item.description.substring(0, 80)}</p>
+                                                <h3 className={'p-2 badge badge-pill badge-danger fs-5'}>{`${item.price} $`}</h3>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </>
                         )}
                     </div>

@@ -39,8 +39,7 @@ const ApiService = {
         };
         return await ApiService.callApi(apiObject);
     },
-    // this place
-    //api service add
+
 
 };
 

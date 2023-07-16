@@ -12,3 +12,8 @@ export async function addNewProduct(newProductData) {
         throw new Error('Error adding product: ' + error.message);
     }
 }
+
+export async function getAllProducts() {
+    const url = 'https://fakestoreapi.com/products';
+    return await ApiService.get(url);
+}
