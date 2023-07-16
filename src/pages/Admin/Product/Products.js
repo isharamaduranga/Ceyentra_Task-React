@@ -10,7 +10,7 @@ const MyComponent = () => {
 
     useEffect(() => {
         fetchProducts();
-    })
+    },[])
 
     const fetchProducts = async () => {
         try {
@@ -36,7 +36,7 @@ const MyComponent = () => {
                         <div className="d-flex flex-wrap justify-content-center gap-4">
                             {products?.map(p => (<Link
                                     key={p.id}
-                                    to={`/dashboard/admin/product/${p.id}`}
+                                    to={`/home/admin/products/${p.id}`}
                                     className='product_link'
                                 >
                                     <div key={p.id} className="card m-2 border border-1 shadow border-info rounded-5"

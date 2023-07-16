@@ -40,6 +40,37 @@ const ApiService = {
         return await ApiService.callApi(apiObject);
     },
 
+    getSingleProduct: async (productId, headers = {}) => {
+        const url = `https://fakestoreapi.com/products/${productId}`;
+        const apiObject = {
+            url,
+            method: 'GET',
+            headers,
+        };
+        return await ApiService.callApi(apiObject);
+    },
+
+    updateProduct: async (productId, updateData, headers = {}) => {
+        const url = `https://fakestoreapi.com/products/${productId}`;
+        const apiObject = {
+            url,
+            method: 'PUT',
+            data: updateData,
+            headers,
+        };
+        return await ApiService.callApi(apiObject);
+    },
+
+    deleteProduct: async (productId, headers = {}) => {
+        const url = `https://fakestoreapi.com/products/${productId}`;
+        const apiObject = {
+            url,
+            method: 'DELETE',
+            headers,
+        };
+        return await ApiService.callApi(apiObject);
+    },
+
 
 };
 
