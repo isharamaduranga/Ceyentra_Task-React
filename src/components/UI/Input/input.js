@@ -15,6 +15,7 @@ const Input = (props) => {
                 helperText={props.helperText}
                 type={props.type}
                 autoComplete={props.autoComplete}
+                fullWidth={props.fullWidth}
             />
         </div>
     );

@@ -7,11 +7,11 @@ const MyComponent = () => {
         <Layout title={"All Products - E-Commerce "}>
             <div className="container-fluid  p-3">
                 <div className="row">
-                    <div className="col-md-3" style={{height:'78vh',borderRight:'1px solid gray'}}>
+                    <div className="col-md-3"  style={{ minHeight: '78vh' }}>
                         <AdminMenu/>
                     </div>
 
-                    <div className="col-md-9">
+                    <div className="col-md-9" style={{ borderLeft: '1px solid gray' }}>
                         <h2>All Products page</h2>
                     </div>
                 </div>
