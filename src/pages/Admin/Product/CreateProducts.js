@@ -1,12 +1,12 @@
 import React, {useEffect, useState}  from 'react';
 import Layout from "../../../Layout/Layout";
 import AdminMenu from "../../../Layout/adminmenu/AdminMenu";
-import {useNavigate} from "react-router-dom";
 import {Select} from 'antd'
 import {toast} from 'react-toastify';
 import {getCategories} from "../../../services/category";
 import {useFormik} from "formik";
 import Input from "../../../components/UI/Input/input";
+import { addNewProduct } from "../../../services/product";
 const {Option} = Select;
 const CreateProduct = () => {
 
@@ -31,7 +31,7 @@ const CreateProduct = () => {
 
     /** check image URL Validity */
     const isValidImageUrl = (url) => {
-        const regex = /\.(jpeg|jpg|gif|png|bmp|svg)$/i;
+        const regex = /\.(jpeg|jpg|gif|png|webp|bmp|svg)$/i;
         return regex.test(url);
     };
 
@@ -74,30 +74,21 @@ const CreateProduct = () => {
     const onSubmit = async (values, { resetForm }) => {
 
         try {
-            /*      const productData = new FormData();
-                  productData.append("name",name)
-                  productData.append("description",description)
-                  productData.append("price",price)
-                  productData.append("quantity",quantity)
-                  productData.append("photo",photo)
-                  productData.append("category",category)
 
+            const newProductData = {
+                title: values.title,
+                price: values.price,
+                description: values.description,
+                image: values.image,
+                category: values.category,
+            };
 
-                  const {data} = axios.post(
-                      '/api/v1/product/create-product',
-                      productData);
-
-                  if (data?.success) {
-                      toast.error(data?.message);
-                  }else{
-                      toast.success('Product Added Successfully ...');
-                      navigate("/dashboard/admin/products");
-                      window.location.reload()
-                  }*/
-
-            console.log(values);
-
+            const addedProduct = await addNewProduct(newProductData);
+            console.log('Product added successfully:', addedProduct);
+            toast.success('Product Added Successfully...');
+            resetForm({ values: '' });
         } catch (error) {
+
             // Handle errors here
             resetForm({ values: '' });
             toast.error('Authentication failed !!!');

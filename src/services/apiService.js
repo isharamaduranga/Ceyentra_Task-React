@@ -19,6 +19,17 @@ const ApiService = {
         return await ApiService.callApi(apiObject);
     },
 
+    post: async (url, data, headers = {}) => {
+        const apiObject = {
+            url,
+            method: 'POST',
+            data,
+            headers,
+        };
+        return await ApiService.callApi(apiObject);
+    },
+
+
     getByCategory: async (category, headers = {}) => {
         const url = `https://fakestoreapi.com/products/category/${category}`;
         const apiObject = {
@@ -28,6 +39,9 @@ const ApiService = {
         };
         return await ApiService.callApi(apiObject);
     },
+    // this place
+    //api service add
+
 };
 
 export default ApiService;
