@@ -2,9 +2,11 @@ import React, {useEffect, useState} from 'react';
 import Layout from "../../Layout/Layout";
 import {getAllProducts} from "../../services/product";
 import {getCategories} from "../../services/category";
-
 import {Checkbox} from "antd";
+import {useNavigate} from "react-router-dom";
+
 function Home() {
+    const navigate=useNavigate();
      const[products,setProducts]=useState([]);
     const [allProducts, setAllProducts] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -158,7 +160,7 @@ function Home() {
                                         <button
                                             className="btn btn-info btn-sm me-1"
                                             onClick={()=>{
-                                               /* navigate(`/product/${p.slug}`)*/
+                                                navigate(`admin/product/${p.id}`);
                                             }}
                                         >More Details
                                         </button>

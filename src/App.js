@@ -16,6 +16,7 @@ import CreateProduct from "./pages/Admin/Product/CreateProducts";
 import Products from "./pages/Admin/Product/Products";
 import Users from "./pages/Admin/Users/Users";
 import UpdateProducts from "./pages/Admin/Product/UpdateProducts";
+import ProductDetailsPage from "./pages/Admin/Product/ProductDetailsPage";
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
                     <Route path="admin/create-product" element={<CreateProduct/>} />
                     <Route path="admin/products" element={<Products/>} />
                     <Route path="admin/products/:id" element={<UpdateProducts/>} />
+                    <Route path="admin/product/:id" element={<ProductDetailsPage/>} />
                     <Route path="admin/users" element={<Users/>} />
                 </Route>
                 <Route path="/about" element={<About/>}/>
