@@ -1,14 +1,16 @@
 import React from 'react';
 import './Header.css'
 import {Link, NavLink} from "react-router-dom";
-
 import {useAuth} from "../../context/AuthContext";
 import {toast} from "react-toastify";
 import { Badge } from 'antd';
 import {MdShoppingCart} from "react-icons/md";
+import useCategory from "../../hooks/useCategory";
+
 
 const Header = () => {
     const [auth, setAuth] = useAuth();
+    const categories = useCategory();
     const handleLogOut = () => {
         setAuth({
             ...auth,
@@ -94,14 +96,34 @@ const Header = () => {
                                         </ul>
                                     </li>
 
-                                    <li className="nav-item">
-                                        <NavLink
-                                            to="/category"
-                                            className="nav-link "
-                                            aria-current="page"
+                                    <li className="nav-item  dropdown">
+                                        <Link className="nav-link dropdown-toggle"
+                                              data-bs-toggle="dropdown"
+                                              to={`/home/admin/categories`}
                                         >
-                                            CATEGORY
-                                        </NavLink>
+                                            Categories
+                                        </Link>
+                                        <ul className="dropdown-menu">
+
+                                            <li>
+                                                <Link
+                                                    className="dropdown-item"
+                                                    to={`/home/admin/categories`}
+                                                >
+                                                    All Categories
+                                                </Link>
+                                            </li>
+                                            {categories?.map((cgy, index) => (
+                                                <li key={index}>
+                                                    <Link
+                                                        className="dropdown-item"
+                                                        to={`/home/admin/category/${cgy}`}
+                                                    >
+                                                        {cgy}
+                                                    </Link>
+
+                                                </li>))}
+                                        </ul>
                                     </li>
 
 

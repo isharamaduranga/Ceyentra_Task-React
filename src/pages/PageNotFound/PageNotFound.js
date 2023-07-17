@@ -13,7 +13,7 @@ const PageNotFound = () => {
                 <h3 className="pb-5">Oops ! Page Not Found !!!</h3>
 
                 {!auth.token? (<Link to="/" className="pnf-btn text-dark">Go Back Home</Link>) :
-                    <Link to="/home/admin" className="pnf-btn text-dark">Go Back Home</Link>
+                    <Link to="/home" className="pnf-btn text-dark">Go Back Home</Link>
                 }
 
             </div>
