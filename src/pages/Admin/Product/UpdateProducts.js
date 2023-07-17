@@ -111,7 +111,7 @@ const UpdateProduct = () => {
             resetForm({ values: '' });
             navigate("/home/admin/products")
         } catch (error) {
-            // Handle errors here
+
             resetForm({ values: '' });
             toast.error('Failed to update product');
         }

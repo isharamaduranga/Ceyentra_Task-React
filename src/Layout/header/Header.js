@@ -17,8 +17,8 @@ const Header = () => {
         localStorage.removeItem('token');
         toast.success("Log Out Successfully ...")
     };
-    return (<>
-            <nav className="navbar bg-dark navbar-expand-lg navbar-dark">
+    return (
+            <nav className="navbar bg-dark navbar-expand-lg navbar-dark ">
                 <div className="container-fluid">
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -124,8 +124,6 @@ const Header = () => {
                     </div>
                 </div>
             </nav>
-        </>
-
     );
 };
 

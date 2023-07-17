@@ -7,12 +7,20 @@ import {getCategories} from "../../../services/category";
 import {useFormik} from "formik";
 import Input from "../../../components/UI/Input/input";
 import { addNewProduct } from "../../../services/product";
+import {useNavigate} from "react-router-dom";
 const {Option} = Select;
 const CreateProduct = () => {
 
+    const navigate = useNavigate();
     const defaultImage = "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png";
     const [categories, setCategories] = useState([]);
     const [image, setImage] = useState('');
+
+    /** check image URL Validity */
+    const isValidImageUrl = (url) => {
+        const regex = /\.(jpeg|jpg|gif|png|webp|bmp|svg)$/i;
+        return regex.test(url);
+    };
 
 
     /** get All Category */
@@ -29,11 +37,7 @@ const CreateProduct = () => {
 
     }, []);
 
-    /** check image URL Validity */
-    const isValidImageUrl = (url) => {
-        const regex = /\.(jpeg|jpg|gif|png|webp|bmp|svg)$/i;
-        return regex.test(url);
-    };
+
 
     /** Handle Image Url Changes */
     const handleImageChange = (e) => {
@@ -74,7 +78,6 @@ const CreateProduct = () => {
     const onSubmit = async (values, { resetForm }) => {
 
         try {
-
             const newProductData = {
                 title: values.title,
                 price: values.price,
@@ -82,19 +85,18 @@ const CreateProduct = () => {
                 image: values.image,
                 category: values.category,
             };
+            await addNewProduct(newProductData);
 
-            const addedProduct = await addNewProduct(newProductData);
-            console.log('Product added successfully:', addedProduct);
             toast.success('Product Added Successfully...');
+            navigate("/home/admin/products")
             resetForm({ values: '' });
+
         } catch (error) {
 
-            // Handle errors here
             resetForm({ values: '' });
             toast.error('Authentication failed !!!');
         }
     };
-
 
     const formik = useFormik({
         initialValues,
