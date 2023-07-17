@@ -50,4 +50,9 @@ export async function deleteProduct(productId) {
     }
 }
 
+export async function getAllProductsByLimit(limit) {
+    const url = `https://fakestoreapi.com/products?limit=${limit}`;
+    return await ApiService.get(url);
+}
+
 

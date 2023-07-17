@@ -10,7 +10,12 @@ const ApiService = {
         }
     },
 
-    get: async (url, headers = {}) => {
+    get: async (url, headers = {}, limit = null) => {
+        // Append the `limit` query parameter to the URL if provided
+        if (limit !== null) {
+            url += `&limit=${limit}`;
+        }
+
         const apiObject = {
             url,
             method: 'GET',

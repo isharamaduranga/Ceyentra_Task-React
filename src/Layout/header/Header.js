@@ -18,7 +18,7 @@ const Header = () => {
         toast.success("Log Out Successfully ...")
     };
     return (
-            <nav className="navbar bg-dark navbar-expand-lg navbar-dark ">
+            <nav className="navbar bg-dark navbar-expand-lg navbar-dark  ">
                 <div className="container-fluid">
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -29,7 +29,6 @@ const Header = () => {
 
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                         <Link
-                            to="/"
                             className="navbar-brand text-warning"
                         >
                             <MdShoppingCart className="pb-1 pe-2 text-success" size="35px"/>  E-Commerce
