@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import Layout from "../../Layout/Layout";
 import {getAllProducts} from "../../services/product";
-import {getCategories} from "../../services/category";
 import {Checkbox} from "antd";
 import {useNavigate} from "react-router-dom";
+import useCategory from "../../hooks/useCategory";
 
 function Home() {
     const navigate=useNavigate();
      const[products,setProducts]=useState([]);
     const [allProducts, setAllProducts] = useState([]);
-    const [categories, setCategories] = useState([]);
+    const categories = useCategory();
     const [checked, setChecked] = useState([]);
     const [total, setTotal] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
@@ -18,7 +18,7 @@ function Home() {
 
     useEffect(() => {
         fetchProducts();
-        fetchCategories();
+
     },[])
 
     /** Get All Products */
@@ -32,16 +32,6 @@ function Home() {
             console.error('Error fetching products:', error);
         }
     }
-
-    /** Get All Categories */
-    const fetchCategories = async () => {
-        try {
-            const data = await getCategories();
-            setCategories(data);
-        } catch (error) {
-            console.error('Error fetching categories:', error);
-        }
-    };
 
     /** Handle Filter Checked Box */
     const handleFilter = (value, name) => {
@@ -110,10 +100,10 @@ function Home() {
                             }}
                         />
                         <button
-                            className="btn btn-outline-success"
+                            className="btn btn-success"
                             type="submit"
                             onClick={handleSearch}
-                        >Search
+                        >Search🔎
                         </button>
                     </div>
 
@@ -124,11 +114,11 @@ function Home() {
                     <div className="d-flex flex-column">
                         {categories.map((category,index)=> (
                             <Checkbox
-                                className='ps-4 fs-6 fw-bold pt-4'
+                                className='ps-3 fs-6 fw-bold pt-4'
                                 key={index}
                                 onChange={(e) => handleFilter(e.target.checked, category)}
                             >
-                                {category.toUpperCase()}
+                                {`🔗${category.toUpperCase()}`}
                             </Checkbox>
                         ))}
                     </div>

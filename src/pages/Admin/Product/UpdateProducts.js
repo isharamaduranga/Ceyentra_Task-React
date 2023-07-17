@@ -3,33 +3,22 @@ import Layout from "../../../Layout/Layout";
 import AdminMenu from "../../../Layout/adminmenu/AdminMenu";
 import {Select} from 'antd'
 import {toast} from 'react-toastify';
-import {getCategories} from "../../../services/category";
 import {useFormik} from "formik";
 import Input from "../../../components/UI/Input/input";
 import {deleteProduct, getSingleProduct, updateProduct} from "../../../services/product";
 import {useParams,useNavigate} from "react-router-dom";
+import useCategory from "../../../hooks/useCategory";
 const {Option} = Select;
 const UpdateProduct = () => {
     const navigate = useNavigate();
     const params = useParams();
     const defaultImage = "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png";
-    const [categories, setCategories] = useState([]);
+    const categories   = useCategory(); // Get categories from the custom hook
     const [image, setImage] = useState('');
     const [product, setProduct] = useState(null);
 
-    /** get All Category */
-    const getAllCategory = async () => {
-        try {
-            const response = await getCategories();
-            setCategories(response);
-        } catch (error) {
-            console.error('Error fetching categories:', error);
-        }
-    }
     useEffect(() => {
-        getAllCategory();
-        fetchSingleProducts();
-     // eslint-disable-next-line
+        fetchSingleProduct();
     }, []);
 
     /** check image URL Validity */
@@ -75,8 +64,7 @@ const UpdateProduct = () => {
     };
 
     /** Get Single Product using product_Id */
-    const fetchSingleProducts = async () => {
-
+    const fetchSingleProduct = async () => {
         try {
             const product = await getSingleProduct(params.id);
             setProduct(product);
@@ -90,9 +78,7 @@ const UpdateProduct = () => {
         } catch (error) {
             console.error('Error getting product: ', error.message);
         }
-    }
-
-
+    };
 
     const onSubmit = async (values, { resetForm }) => {
         try {
@@ -109,13 +95,13 @@ const UpdateProduct = () => {
 
             toast.success('Product Updated Successfully...');
             resetForm({ values: '' });
-            navigate("/home/admin/products")
+            navigate("/home/admin/products");
         } catch (error) {
-
             resetForm({ values: '' });
             toast.error('Failed to update product');
         }
     };
+
     const handleDelete = async () => {
         try {
             await deleteProduct(params.id); // Delete the product using its ID

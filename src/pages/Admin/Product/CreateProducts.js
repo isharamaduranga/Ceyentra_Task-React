@@ -8,12 +8,13 @@ import {useFormik} from "formik";
 import Input from "../../../components/UI/Input/input";
 import { addNewProduct } from "../../../services/product";
 import {useNavigate} from "react-router-dom";
+import useCategory from "../../../hooks/useCategory";
 const {Option} = Select;
 const CreateProduct = () => {
 
     const navigate = useNavigate();
     const defaultImage = "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png";
-    const [categories, setCategories] = useState([]);
+    const categories = useCategory();
     const [image, setImage] = useState('');
 
     /** check image URL Validity */
@@ -21,23 +22,6 @@ const CreateProduct = () => {
         const regex = /\.(jpeg|jpg|gif|png|webp|bmp|svg)$/i;
         return regex.test(url);
     };
-
-
-    /** get All Category */
-    const getAllCategory = async () => {
-        try {
-            const response = await getCategories();
-            setCategories(response);
-        } catch (error) {
-            console.error('Error fetching categories:', error);
-        }
-    }
-    useEffect(() => {
-        getAllCategory();
-
-    }, []);
-
-
 
     /** Handle Image Url Changes */
     const handleImageChange = (e) => {

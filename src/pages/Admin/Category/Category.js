@@ -5,23 +5,13 @@ import { getCategories, getByCategory } from "../../../services/category";
 import { Link } from "react-router-dom";
 
 import categoryBg from '../../../assets/category.png'
+import useCategory from "../../../hooks/useCategory";
 const Category = () => {
-    const [categories, setCategories] = useState([]);
+    const categories = useCategory();
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [categoryData, setCategoryData] = useState([]);
 
-    useEffect(() => {
-        fetchCategories();
-    }, []);
 
-    const fetchCategories = async () => {
-        try {
-            const data = await getCategories();
-            setCategories(data);
-        } catch (error) {
-            console.error('Error fetching categories:', error);
-        }
-    };
 
     const handleCategoryClick = async (category) => {
         setSelectedCategory(category);
