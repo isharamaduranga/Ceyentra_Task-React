@@ -3,7 +3,6 @@ import Layout from "../../../Layout/Layout";
 import AdminMenu from "../../../Layout/adminmenu/AdminMenu";
 import {Select} from 'antd'
 import {toast} from 'react-toastify';
-import {getCategories} from "../../../services/category";
 import {useFormik} from "formik";
 import Input from "../../../components/UI/Input/input";
 import { addNewProduct } from "../../../services/product";

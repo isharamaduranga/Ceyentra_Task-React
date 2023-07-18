@@ -1,26 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Layout from "../../../Layout/Layout";
 import AdminMenu from "../../../Layout/adminmenu/AdminMenu";
-import {getAllProducts} from "../../../services/product";
 import {Link} from "react-router-dom";
+import useProduct from "../../../hooks/useProduct";
 
 const MyComponent = () => {
 
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        fetchProducts();
-    },[])
-
-    const fetchProducts = async () => {
-        try {
-            const data = await getAllProducts();
-            setProducts(data)
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        }
-    }
-
+    const products = useProduct();
 
     return (<Layout title={"All Products - E-Commerce "}>
             <div className="container-fluid  p-3">
