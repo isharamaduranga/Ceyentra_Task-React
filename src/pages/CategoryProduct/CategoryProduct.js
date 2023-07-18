@@ -14,7 +14,7 @@ const CategoryProduct = () =>{
         try {
             const data = await getByCategory(params.id);
             setProduct(data)
-            setCategory(data.category)
+            setCategory(data[0].category)
 
         } catch (error) {
             console.log(error);
@@ -28,7 +28,7 @@ const CategoryProduct = () =>{
         return (
             <Layout>
                 <div className="container mt-3">
-                    <h1 className={'text-center'}>Category - {category?.name}</h1>
+                    <h1 className={'text-center'}>Category - {category}</h1>
                     <h5 className={'text-center'}>{product?.length} results Found...😍</h5>
                     <hr/>
                     <div className="d-flex flex-wrap justify-content-center gap-2">

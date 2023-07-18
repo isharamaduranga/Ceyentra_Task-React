@@ -32,11 +32,11 @@ const Category = () => {
                     </div>
 
                     <div className="col-md-9" style={{ borderLeft: '1px solid gray' }}>
-                        <h2 className={'text-center'}>All Categories page</h2>
+                        <h2 className={'text-center pt-5'}>All Categories page</h2>
                         <hr/>
                         <div className="d-flex flex-row justify-content-evenly flex-wrap">
                         {categories.map(category => (
-                            <div key={category} className=" mt-3 mb-3 gx-3 gy-3 ">
+                            <div key={category} className=" mt-5 mb-5 gx-3 gy-3 ">
                                 <Link onClick={() => handleCategoryClick(category)}>
                                     <div className="card border border-info shadow " style={{width: '15rem',height:'15rem'}}>
                                         <img src={categoryBg}
