@@ -4,6 +4,8 @@ import {getAllProducts} from "../../services/product";
 import {Checkbox} from "antd";
 import {useNavigate} from "react-router-dom";
 import useCategory from "../../hooks/useCategory";
+import {useCart} from "../../context/CartContext";
+import {toast} from "react-toastify";
 
 function Home() {
     const navigate=useNavigate();
@@ -13,7 +15,7 @@ function Home() {
     const [checked, setChecked] = useState([]);
     const [total, setTotal] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
-   /* const [cart, setCart] = useCart();*/
+    const [cart, setCart] = useCart();
 
 
     useEffect(() => {
@@ -158,11 +160,11 @@ function Home() {
                                         <button
                                             className="btn btn-primary btn-sm ms-1"
                                             onClick={()=> {
-                                              /*  setCart([...cart,p])
+                                                setCart([...cart,p])
                                                 //Create & set Cart items to save in local Storage using JSON Array format
                                                 localStorage.setItem('cart',JSON.stringify([...cart,p]));
 
-                                                toast.success('Item Added to Cart ✅')*/
+                                                toast.success('Item Added to Cart ✅')
                                             }}
                                         >
                                             Add To Cart

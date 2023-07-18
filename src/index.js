@@ -4,13 +4,16 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import {AuthProvider} from "./context/AuthContext";
+import {CartProvider} from "./context/CartContext";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <AuthProvider>
-        <BrowserRouter>
-            <App/>
-        </BrowserRouter>
+        <CartProvider>
+            <BrowserRouter>
+                <App/>
+            </BrowserRouter>
+        </CartProvider>
     </AuthProvider>
 );

@@ -3,11 +3,14 @@ import Layout from "../../../Layout/Layout";
 import {getSingleProduct} from "../../../services/product";
 import {useNavigate, useParams} from "react-router-dom";
 import {Rate} from 'antd';
+import {toast} from "react-toastify";
+import {useCart} from "../../../context/CartContext";
 
 const ProductDetails = () => {
     const navigate = useNavigate();
     const params = useParams();
     const [product, setProduct] = useState([]);
+    const [cart, setCart] = useCart();
     /** Get Single Product using product_Id */
     const fetchSingleProducts = async () => {
 
@@ -63,7 +66,19 @@ const ProductDetails = () => {
                                 {`  ${product?.rating?.rate}`}
                             </span>
                                 <div>
-                                    <button className='btn btn-success m-auto mt-5 w-50'>ADD TO CART</button>
+                                    <button
+                                        className='btn btn-success m-auto mt-5 w-50'
+                                        onClick={()=>{
+                                            setCart([...cart,product])
+                                            //Create & set Cart items to save in local Storage using JSON Array format
+                                            localStorage.setItem('cart',JSON.stringify([...cart,product]));
+
+                                            toast.success('Item Added to Cart ✅')
+                                            navigate('/home')
+
+                                        }}
+
+                                    >ADD TO CART</button>
                                 </div>
                             </h6>
                         </div>

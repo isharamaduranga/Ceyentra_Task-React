@@ -6,10 +6,12 @@ import {toast} from "react-toastify";
 import { Badge } from 'antd';
 import {MdShoppingCart} from "react-icons/md";
 import useCategory from "../../hooks/useCategory";
+import {useCart} from "../../context/CartContext";
 
 
 const Header = () => {
     const [auth, setAuth] = useAuth();
+    const [cart] = useCart();
     const categories = useCategory();
     const handleLogOut = () => {
         setAuth({
@@ -128,9 +130,9 @@ const Header = () => {
 
 
                                     <li className="nav-item mt-2">
-                                        <Badge count={5} overflowCount={10}>
+                                        <Badge count={cart?.length} overflowCount={10}>
                                             <NavLink
-                                                to="/home/cart"
+                                                to="/home/admin/cart"
                                                 className="nav-link"
                                                 href="#">
                                                 CART

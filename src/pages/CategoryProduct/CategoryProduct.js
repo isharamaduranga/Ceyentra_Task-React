@@ -3,13 +3,15 @@ import Layout from "../../Layout/Layout";
 import {useNavigate, useParams} from "react-router-dom";
 import {useState,useEffect} from "react";
 import {getByCategory} from "../../services/category";
+import {toast} from "react-toastify";
+import {useCart} from "../../context/CartContext";
 
 const CategoryProduct = () =>{
     const navigate=useNavigate();
     const params = useParams();
     const[product,setProduct]=useState([]);
     const[category,setCategory]=useState([]);
-
+    const [cart, setCart] = useCart();
     const getProductsByCategory = async () => {
         try {
             const data = await getByCategory(params.id);
@@ -61,11 +63,11 @@ const CategoryProduct = () =>{
                                         <button
                                             className="btn btn-primary btn-sm ms-1"
                                             onClick={()=> {
-                                                /*  setCart([...cart,p])
+                                                  setCart([...cart,p])
                                                   //Create & set Cart items to save in local Storage using JSON Array format
                                                   localStorage.setItem('cart',JSON.stringify([...cart,p]));
 
-                                                  toast.success('Item Added to Cart ✅')*/
+                                                  toast.success('Item Added to Cart ✅')
                                             }}
                                         >
                                             Add To Cart
