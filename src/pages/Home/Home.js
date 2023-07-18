@@ -116,7 +116,7 @@ function Home() {
                     <div className="d-flex flex-column">
                         {categories.map((category,index)=> (
                             <Checkbox
-                                className='ps-3 fs-6 fw-bold pt-4'
+                                className='ps-3 fw-bold pt-4'
                                 key={index}
                                 onChange={(e) => handleFilter(e.target.checked, category)}
                             >
@@ -136,9 +136,9 @@ function Home() {
                                  style={{width: '18rem', height: '27rem'}}>
 
                                 <img src={p.image}
-                                     className="card-img-top img-thumbnail   mt-2"
+                                     className="card-img-top  mt-2"
                                      alt={p.title}
-                                     style={{height:'12rem',width:'max-content',margin:'auto'}}
+                                     style={{height:'12rem',width:'12rem',margin:'auto'}}
                                 />
                                 <hr className={'m-2'}/>
                                 <div className="card-body">

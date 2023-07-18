@@ -96,7 +96,7 @@ const CreateProduct = () => {
                     </div>
 
 
-                    <div className="col-md-9" style={{ borderLeft: '1px solid gray' }}style={{ borderLeft: '1px solid gray' }}>
+                    <div className="col-md-9"style={{ borderLeft: '1px solid gray' }}>
                         <h2 className={'text-center pt-1 pb-2'} >Create New Product</h2>
                         <hr/>
 

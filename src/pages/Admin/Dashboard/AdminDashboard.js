@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from "../../../Layout/Layout";
 import AdminMenu from "../../../Layout/adminmenu/AdminMenu";
 import {useAuth} from "../../../context/AuthContext";
-
+import admBg from '../../../assets/admin_dash_bg.jpg'
 const AdminDashboard = () => {
     const[auth]= useAuth();
     return (
@@ -12,9 +12,13 @@ const AdminDashboard = () => {
                         <div className="col-md-3" style={{height:'78vh',borderRight:'1px solid gray'}}>
                             <AdminMenu/>
                         </div>
-                        <div className="col-md-9">
-                            <div className="card w-75 p-3">
-                                <h3>Admin Name{auth?.token}</h3>
+                        <div className="col-md-9 p-3">
+                            <div className="card shadow-lg p-5 ">
+                                <img
+                                src={admBg}
+                                alt={'admin_background'}
+                                className={'rounded-5 object-fit-contain'}
+                                />
                             </div>
                         </div>
                     </div>

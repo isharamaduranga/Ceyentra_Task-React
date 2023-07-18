@@ -22,3 +22,11 @@
 }
 
 /** ==================== Form Css ======================*/
+
+.card-img-top{
+  transition: transform .2s; /* Animation */
+}
+
+.card-img-top:hover{
+  transform: scale(1.2);
+}
