@@ -8,5 +8,5 @@ export async function getCategories() {
 
 export async function getByCategory(category) {
     const url = `https://fakestoreapi.com/products/category/${encodeURIComponent(category)}`;
-    return await ApiService.getByCategory(category);
+    return await ApiService.getByCategory(url,category);
 }

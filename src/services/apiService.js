@@ -28,15 +28,13 @@ const ApiService = {
         const apiObject = {
             url,
             method: 'POST',
-            data,
-            headers,
+            data, headers,
         };
         return await ApiService.callApi(apiObject);
     },
 
 
-    getByCategory: async (category, headers = {}) => {
-        const url = `https://fakestoreapi.com/products/category/${category}`;
+    getByCategory: async (url, category, headers = {}) => {
         const apiObject = {
             url,
             method: 'GET',
@@ -45,8 +43,7 @@ const ApiService = {
         return await ApiService.callApi(apiObject);
     },
 
-    getSingleProduct: async (productId, headers = {}) => {
-        const url = `https://fakestoreapi.com/products/${productId}`;
+    getSingleProduct: async (url, productId, headers = {}) => {
         const apiObject = {
             url,
             method: 'GET',
@@ -55,8 +52,7 @@ const ApiService = {
         return await ApiService.callApi(apiObject);
     },
 
-    updateProduct: async (productId, updateData, headers = {}) => {
-        const url = `https://fakestoreapi.com/products/${productId}`;
+    updateProduct: async (url, updateData, headers = {}) => {
         const apiObject = {
             url,
             method: 'PUT',
@@ -66,8 +62,7 @@ const ApiService = {
         return await ApiService.callApi(apiObject);
     },
 
-    deleteProduct: async (productId, headers = {}) => {
-        const url = `https://fakestoreapi.com/products/${productId}`;
+    deleteProduct: async (url, headers = {}) => {
         const apiObject = {
             url,
             method: 'DELETE',
@@ -75,8 +70,14 @@ const ApiService = {
         };
         return await ApiService.callApi(apiObject);
     },
-
-
+    deleteUser: async (url, headers = {}) => {
+        const apiObject = {
+            url,
+            method: 'DELETE',
+            headers,
+        };
+        return await ApiService.callApi(apiObject);
+    },
 };
 
 export default ApiService;

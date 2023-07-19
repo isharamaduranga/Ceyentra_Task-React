@@ -22,10 +22,8 @@ export async function getAllProducts() {
 
 export async function getSingleProduct(productId) {
     const url = `https://fakestoreapi.com/products/${productId}`;
-    return await ApiService.getSingleProduct(productId);
+    return await ApiService.getSingleProduct(url,productId);
 }
-
-
 
 export async function updateProduct(productId, updateData) {
     const url = `https://fakestoreapi.com/products/${productId}`;
@@ -33,8 +31,7 @@ export async function updateProduct(productId, updateData) {
         'Content-Type': 'application/json',
     };
     try {
-        const response = await ApiService.updateProduct(productId, updateData, headers);
-        return response;
+        return await ApiService.updateProduct(url, updateData, headers);
     } catch (error) {
         throw new Error('Error updating product: ' + error.message);
     }
@@ -42,17 +39,16 @@ export async function updateProduct(productId, updateData) {
 
 export async function deleteProduct(productId) {
     const url = `https://fakestoreapi.com/products/${productId}`;
+    const headers = {
+        'Content-Type': 'application/json',
+    };
     try {
-        const response = await ApiService.deleteProduct(productId);
-        return response;
+        return  await ApiService.deleteProduct(url,headers);
     } catch (error) {
         throw new Error('Error deleting product: ' + error.message);
     }
 }
 
-export async function getAllProductsByLimit(limit) {
-    const url = `https://fakestoreapi.com/products?limit=${limit}`;
-    return await ApiService.get(url);
-}
+
 
 

@@ -1,10 +1,14 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import Layout from "../../../Layout/Layout";
 import AdminMenu from "../../../Layout/adminmenu/AdminMenu";
-import { getAllUsers } from "../../../services/users";
+import {deleteUser, getAllUsers} from "../../../services/users";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 const Users = () => {
+    const navigate=useNavigate();
     const [users, setUsers] = useState([]);
+    const [userId, setUserId] = useState('');
 
     // Use useCallback to memoize the getAllUserList function
     const getAllUserList = useCallback(async () => {
@@ -19,6 +23,18 @@ const Users = () => {
     useEffect(() => {
         getAllUserList();
     }, [getAllUserList]);
+
+
+
+    const handleDelete = async (userId) => {
+        try {
+            await deleteUser(userId) // Delete the product using its ID
+            toast.success('User Deleted Successfully...');
+            navigate('/home/admin'); // Navigate back to the products page
+        } catch (error) {
+            toast.error('Failed to delete User');
+        }
+    };
 
     return (
         <Layout title={'All Users - E-Commerce'}>
@@ -56,7 +72,10 @@ const Users = () => {
                                                 Edit
                                             </button>
 
-                                            <button className="btn btn-danger btn-sm ms-2">
+                                            <button
+                                                className="btn btn-danger btn-sm ms-2"
+                                                onClick={() => handleDelete(user.id)}
+                                            >
                                                 Delete
                                             </button>
                                         </td>
