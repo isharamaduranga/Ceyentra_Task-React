@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Layout from "../../../Layout/Layout";
 import AdminMenu from "../../../Layout/adminmenu/AdminMenu";
-import { getCategories, getByCategory } from "../../../services/category";
+import {getByCategory } from "../../../services/category";
 import { Link } from "react-router-dom";
 
 import categoryBg from '../../../assets/category.png'
