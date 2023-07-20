@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Box } from '@mui/material';
 import { useFormik } from 'formik';
 import './Login.css';
@@ -53,10 +53,14 @@ function Login() {
 
                 // Redirect to the Home page
                 navigate('/home');
-                toast.success('Log In Successfully ...');
+                toast.success('Log In Successfully ...',{
+                    theme:"dark",
+                });
             } else {
                 // Handle authentication error
-                toast.error('Authentication failed !!!');
+                toast.error('Authentication failed !!!',{
+                    theme:"dark",
+                });
             }
             // Reset the form if needed
             resetForm({ values: '' });
