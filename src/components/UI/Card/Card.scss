@@ -1,0 +1,76 @@
+// Card.scss
+
+.custom-card {
+  border: 1px solid #50ABC8;
+  border-radius: 5px;
+  box-shadow: rgba(134, 136, 138, 0.2) 0px 8px 24px;
+  padding: 0.2rem;
+  width: 18rem;
+  height: 26rem;
+
+  .custom-card__image {
+    height: 12rem;
+    width: 12rem;
+    margin: auto;
+    display: block;
+    object-fit: contain;
+    margin-top: 1rem;
+    transition: transform 0.2s; /* Animation */
+  }
+
+  .custom-card__separator {
+    margin: 1.2rem;
+  }
+
+  .custom-card__body {
+    text-align: center;
+  }
+
+  .custom-card__title {
+    font-size: 18px;
+  }
+
+  .custom-card__description {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .custom-card__price {
+    font-size: 16px;
+    font-weight: 800;
+    color: #e32b2b;
+    margin-top: 0.7rem;
+  }
+
+  .custom-card__buttons {
+    margin-top: 1rem;
+
+
+    .custom-card__button {
+      border: none;
+      border-radius: 10px;
+      padding: 0.3rem 0.5rem;
+      font-size: 13px;
+      cursor: pointer;
+      margin-right: 0.4rem;
+      margin-left: 0.4rem;
+      text-transform: uppercase;
+    }
+
+    .custom-card__button--info {
+      background-color: #50ABC8;
+      color: #fff;
+    }
+
+    .custom-card__button--primary {
+      background-color: #386BC0;
+      color: #fff;
+    }
+  }
+
+  &:hover {
+    .custom-card__image {
+      transform: scale(1.2);
+    }
+  }
+}

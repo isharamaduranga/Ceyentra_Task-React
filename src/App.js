@@ -28,6 +28,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/signup" element={<Signup/>} />
+
                 <Route path="/home" element={<PrivateRoute/>} >
                     <Route path="" element={<Home/>} />
                     <Route path="admin" element={<AdminDashboard/>} />
@@ -41,6 +42,7 @@ function App() {
                     <Route path="admin/cart" element={<CartPage/>} />
                     <Route path="admin/users" element={<Users/>} />
                 </Route>
+
                 <Route path="/about" element={<About/>}/>
                 <Route path="/contact" element={<Contact/>}/>
                 <Route path="/policy" element={<Policy/>}/>

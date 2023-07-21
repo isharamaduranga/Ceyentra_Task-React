@@ -6,6 +6,8 @@ import {toast} from "react-toastify";
 
 class Users extends Component {
 
+    /** natural place to set up the initial state and other initial values. */
+/** “this” holds the reference to current execution context in javascript. */
     constructor(props) {
         super(props);
         this.state = {
@@ -15,10 +17,12 @@ class Users extends Component {
         this.handleDelete = this.handleDelete.bind(this);
     }
 
+   /** method is called after the component is rendered. */
     componentDidMount() {
         this.getAllUserList();
     }
 
+    /** Get All Users */
     async getAllUserList() {
         try {
             const data = await getAllUsers();
@@ -28,6 +32,7 @@ class Users extends Component {
         }
     }
 
+    /** Handle delete user*/
     async handleDelete(userId) {
         try {
             await deleteUser(userId);
